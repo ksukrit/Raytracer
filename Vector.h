@@ -28,10 +28,6 @@ public:
         return Vector(-x, -y, -z);
     }
 
-    Vector operator*(const double& d) const {
-        return Vector(x * d, y * d, z * d);
-    }
-
     Vector operator*(const Vector& v) const {
         return Vector(x * v.x, y * v.y, z * v.z);
     }
@@ -96,6 +92,15 @@ public:
         return z;
     }
 
+    inline static Vector random() {
+        return Vector(random_double(), random_double(), random_double());
+    }
+
+    inline static Vector random(double min, double max) {
+        return Vector(random_double(min,max), random_double(min,max), random_double(min,max));
+    }
+
+
     Vector normalize()    {
         double l = length();
         if (l == 0)
@@ -111,6 +116,23 @@ double dot(const Vector &u, const Vector &v) {
     return u.x_component() * v.x_component()
          + u.y_component() * v.y_component()
          + u.z_component() * v.z_component();
+}
+
+inline Vector random_in_unit_disk() {
+    while (true) {
+        auto p = Vector(random_double(-1,1), random_double(-1,1), 0);
+        if (p.length() >= 1) continue;
+        return p;
+    }
+}
+
+// Both these functions are needed so that we can multiply double * vector and vector * double
+inline Vector operator*(const double& d, const Vector& v) {
+    return Vector(v.x_component() * d, v.y_component() * d, v.z_component() * d);
+}
+
+inline Vector operator*(const Vector &v, double t) {
+    return t * v;
 }
 
 Vector randomPoint() {

@@ -52,4 +52,6 @@ public:
 
 };
 
+class Dielectric : public Material {};
+
 #endif

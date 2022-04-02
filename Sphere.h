@@ -15,7 +15,6 @@ public:
     Sphere(double radius, Vector center_pos, Vector color_vec, Vector emission_vec, ReflectionType rt):radius(radius), center_pos(center_pos), color_vec(color_vec), emission_vec(emission_vec), rt(rt){}
     
     Sphere(double radius,Vector center_pos,shared_ptr<Material>m ):radius(radius),center_pos(center_pos),material(m){}
-
     double getRadius() const {
         return radius;
     }
